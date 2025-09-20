@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: javaadvanced
+fibonacci:
+  cache-enabled: true
+  method: iterative
