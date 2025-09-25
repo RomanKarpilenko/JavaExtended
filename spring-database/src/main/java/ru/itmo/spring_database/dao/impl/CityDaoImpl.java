@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 import ru.itmo.spring_database.dao.CityDao;
+import ru.itmo.spring_database.dao.TranslationDao;
 import ru.itmo.spring_database.model.City;
 
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class CityDaoImpl implements CityDao {
 
     private final NamedParameterJdbcOperations namedParameterJdbcTemplate;
+    private final TranslationDao translationDao;
 
     public Long create(
             Long id,
@@ -90,21 +92,13 @@ public class CityDaoImpl implements CityDao {
             return "Город с id %s не найден".formatted(id.toString());
         }
 
-        String translationSql = """
-                select ru, en
-                from translations
-                where translation_key = :translationKey
-                """;
-
-        Map<String, Object> translations = namedParameterJdbcTemplate.queryForMap(
-                translationSql,
-                Map.of("translationKey", descriptionMap.get("translationKey"))
-        );
+        String translationKey = descriptionMap.get("translationKey").toString();
 
         String cityId = descriptionMap.get("id").toString();
         String cityCode = descriptionMap.get("cityCode").toString();
-        String ru = translations.getOrDefault("ru", "").toString();
-        String en = translations.getOrDefault("en", "").toString();
+        Map<String, String> translations = translationDao.getTranslationsByKey(translationKey);
+        String ru = translations.getOrDefault("ru", "");
+        String en = translations.getOrDefault("en", "");
         String population = descriptionMap.get("population").toString();
         return String.format("city_id: %s\ncode: %s\nru: %s\nen: %s\npopulation: %s", cityId, cityCode, ru, en, population);
     }

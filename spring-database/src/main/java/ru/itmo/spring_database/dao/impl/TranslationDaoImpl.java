@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toMap;
+
 @Repository
 @RequiredArgsConstructor
 public class TranslationDaoImpl implements TranslationDao {
@@ -54,7 +56,7 @@ public class TranslationDaoImpl implements TranslationDao {
     }
 
     @Override
-    public HashMap<String, String> getTranslations(String locale) {
+    public Map<String, String> getAllTranslationsByLocale(String locale) {
         String sql = """
                 select translation_key, %s
                 from translations
@@ -73,6 +75,24 @@ public class TranslationDaoImpl implements TranslationDao {
                     return map;
                 }
         );
+    }
+
+    @Override
+    public Map<String, String> getTranslationsByKey(String translationKey) {
+        String translationSql = """
+                select ru, en
+                from translations
+                where translation_key = :translationKey
+                """;
+
+        Map<String, Object> translations = namedParameterJdbcTemplate.queryForMap(
+                translationSql,
+                Map.of("translationKey", translationKey)
+        );
+
+        return translations.entrySet()
+                .stream()
+                .collect(toMap(Map.Entry::getKey, e -> String.valueOf(e.getValue())));
     }
 
     @Override

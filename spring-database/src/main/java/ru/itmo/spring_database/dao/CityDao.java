@@ -11,12 +11,8 @@ public interface CityDao {
             String nameTranslationKey,
             Long population
     );
-
     void deleteById(Long id);
-
     Optional<City> findById(Long id);
-
     String description(Long id);
-
     void deleteAll();
 }
