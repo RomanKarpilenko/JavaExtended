@@ -2,9 +2,9 @@ package ru.itmo.javaadvanced.lesson2.mapper.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.itmo.javaadvanced.lesson2.model.Month;
 import ru.itmo.javaadvanced.lesson2.converter.Converter;
 import ru.itmo.javaadvanced.lesson2.mapper.Mapper;
+import ru.itmo.javaadvanced.lesson2.model.Month;
 
 import java.util.List;
 
