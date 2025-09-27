@@ -11,6 +11,7 @@
     <modules>
         <module>spring-core</module>
         <module>spring-database</module>
+        <module>spring-jpa</module>
     </modules>
 
 </project>
