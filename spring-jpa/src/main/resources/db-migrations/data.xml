@@ -1,0 +1,82 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Karpilenko Roman" id="fill-table-cities">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0"><![CDATA[
+                select count(*)
+                from cities
+                    ]]></sqlCheck>
+        </preConditions>
+
+        <!-- === Москва === -->
+        <insert tableName="translation_keys">
+            <column name="translation_key" value="name_moscow"/>
+        </insert>
+
+        <insert tableName="translations">
+            <column name="translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+            <column name="language_code" value="ru"/>
+            <column name="value" value="Москва"/>
+        </insert>
+        <insert tableName="translations">
+            <column name="translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+            <column name="language_code" value="en"/>
+            <column name="value" value="Moscow"/>
+        </insert>
+
+        <insert tableName="cities">
+            <column name="code" value="MSK"/>
+            <column name="population" valueNumeric="13000000"/>
+            <column name="name_translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+        </insert>
+
+        <!-- === Самара === -->
+        <insert tableName="translation_keys">
+            <column name="translation_key" value="name_samara"/>
+        </insert>
+
+        <insert tableName="translations">
+            <column name="translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+            <column name="language_code" value="ru"/>
+            <column name="value" value="Самара"/>
+        </insert>
+        <insert tableName="translations">
+            <column name="translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+            <column name="language_code" value="en"/>
+            <column name="value" value="Samara"/>
+        </insert>
+
+        <insert tableName="cities">
+            <column name="code" value="SMR"/>
+            <column name="population" valueNumeric="1100000"/>
+            <column name="name_translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+        </insert>
+
+        <!-- === Санкт-Петербург === -->
+        <insert tableName="translation_keys">
+            <column name="translation_key" value="name_spb"/>
+        </insert>
+
+        <insert tableName="translations">
+            <column name="translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+            <column name="language_code" value="ru"/>
+            <column name="value" value="Санкт-Петербург"/>
+        </insert>
+        <insert tableName="translations">
+            <column name="translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+            <column name="language_code" value="en"/>
+            <column name="value" value="Saint Petersburg"/>
+        </insert>
+
+        <insert tableName="cities">
+            <column name="code" value="SPB"/>
+            <column name="population" valueNumeric="5600000"/>
+            <column name="name_translation_key_id" valueComputed="currval('translation_keys_id_seq')"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
