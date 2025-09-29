@@ -1,12 +1,12 @@
-package ru.itmo.jpa.service;
+package ru.itmo.web.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.itmo.jpa.model.City;
-import ru.itmo.jpa.model.LanguageCode;
-import ru.itmo.jpa.model.Translation;
-import ru.itmo.jpa.repository.CityRepository;
+import ru.itmo.web.model.City;
+import ru.itmo.web.model.LanguageCode;
+import ru.itmo.web.model.Translation;
+import ru.itmo.web.repository.CityRepository;
 
 import java.util.Map;
 import java.util.stream.Collectors;

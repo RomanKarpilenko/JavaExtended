@@ -1,17 +1,17 @@
-package ru.itmo.jpa.util;
+package ru.itmo.web.util;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import ru.itmo.jpa.model.City;
-import ru.itmo.jpa.model.LanguageCode;
-import ru.itmo.jpa.model.Translation;
-import ru.itmo.jpa.model.TranslationKey;
-import ru.itmo.jpa.repository.CityRepository;
-import ru.itmo.jpa.repository.TranslationKeyRepository;
-import ru.itmo.jpa.repository.TranslationRepository;
-import ru.itmo.jpa.service.CityService;
+import ru.itmo.web.model.City;
+import ru.itmo.web.model.LanguageCode;
+import ru.itmo.web.model.Translation;
+import ru.itmo.web.model.TranslationKey;
+import ru.itmo.web.repository.CityRepository;
+import ru.itmo.web.repository.TranslationKeyRepository;
+import ru.itmo.web.repository.TranslationRepository;
+import ru.itmo.web.service.CityService;
 
 import java.util.List;
 import java.util.Objects;
@@ -90,7 +90,7 @@ public class StateMachine {
                         )
                 );
                 log.info("Данные сохранены!");
-                log.info(cityService.description(city.getId()));
+                log.info(cityService.description(city.getId()).getDescription());
                 currentState = State.CONTINUE;
             }
             case CONTINUE -> {

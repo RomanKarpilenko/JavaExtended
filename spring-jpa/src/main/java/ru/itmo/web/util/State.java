@@ -1,4 +1,4 @@
-package ru.itmo.jpa.util;
+package ru.itmo.web.util;
 
 public enum State {
     WAIT_CODE,

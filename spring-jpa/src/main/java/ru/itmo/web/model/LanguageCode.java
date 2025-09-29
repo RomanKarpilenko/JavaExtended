@@ -1,4 +1,4 @@
-package ru.itmo.jpa.model;
+package ru.itmo.web.model;
 
 import java.util.Locale;
 

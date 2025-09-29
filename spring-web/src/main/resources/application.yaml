@@ -1,0 +1,20 @@
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: spring-web
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: 'classpath:db-migrations/changelog.xml'
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: ru.itmo.web.controller

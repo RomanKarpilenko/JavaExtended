@@ -12,6 +12,7 @@
         <module>spring-core</module>
         <module>spring-database</module>
         <module>spring-jpa</module>
+        <module>spring-web</module>
     </modules>
 
 </project>
