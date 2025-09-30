@@ -33,7 +33,6 @@ public class CityController {
     public void updateCity(
             @PathVariable
             Long id,
-
             @RequestBody
             @Valid
             CityDto cityDto
