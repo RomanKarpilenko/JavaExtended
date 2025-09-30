@@ -1,0 +1,68 @@
+### Получить jwt для admin
+POST http://localhost:8080/jwt
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "rights": ["ROLE_ADMIN"]
+}
+
+> {%
+    client.global.set("jwt_admin", response.body);
+%}
+
+### Получить jwt для guest
+POST http://localhost:8080/jwt
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "rights": ["ROLE_GUEST"]
+}
+
+> {%
+    client.global.set("jwt_guest", response.body);
+%}
+
+### Получить список всех городов
+GET http://localhost:8080/api/cities
+Authorization: Bearer {{jwt_admin}}
+
+### Получить информацию по конкретному городу
+GET http://localhost:8080/api/cities/2
+Authorization: Bearer {{jwt_guest}}
+
+### Инициировать ошибку при попытке создания города
+POST http://localhost:8080/api/cities
+Content-Type: application/json
+
+{
+  "code": "KHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHVKHV",
+  "population": 15000,
+  "nameTranslationKey": {
+    "translationKey": "name_khabarovsk",
+    "translations": {
+      "ru": "Хабаровск",
+      "en": "Khabarovsk"
+    }
+  }
+}
+
+### Добавить город
+POST http://localhost:8080/api/cities
+Content-Type: application/json
+
+{
+  "code": "KHV",
+  "population": 15000,
+  "nameTranslationKey": {
+    "translationKey": "name_khabarovsk",
+    "translations": {
+      "ru": "Хабаровск",
+      "en": "Khabarovsk"
+    }
+  }
+}
+
+### Удалить город
+DELETE http://localhost:8080/api/cities/4

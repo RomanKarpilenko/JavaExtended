@@ -2,7 +2,7 @@ spring:
   main:
     banner-mode: off
   application:
-    name: spring-jpa
+    name: spring-web
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -14,3 +14,11 @@ spring:
       ddl-auto: validate
   liquibase:
     change-log: 'classpath:db-migrations/changelog.xml'
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: ru.itmo.web.controller
+
+app:
+  jwt:
+    secret: theSecretLengthMustBeAtLeast256Bits
